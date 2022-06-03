@@ -36,6 +36,8 @@
     <script>
         window.onload = function () {
             const ui = SwaggerUIBundle({
+                readOnly : true,
+                validatorUrl: null,
                 urls:
                     [
                         { url: "api", name: "API" },
@@ -54,10 +56,10 @@
             ui.initOAuth({
                 clientId: "",
                 clientSecret: "",
-                //realm: "your-realms",
+                realm: "your-realms",
                 appName: "API",
                 scopeSeparator: " ",
-                //additionalQueryStringParams: {field: "value"},
+                additionalQueryStringParams: {field: "value"},
                 usePkceWithAuthorizationCodeGrant: false
             })
             window.ui = ui
