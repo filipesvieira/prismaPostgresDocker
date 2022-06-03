@@ -45,6 +45,7 @@ module.exports = (app: App) => {
     *         description: "bad request"
     */
     app.post('/time', (req: any, res: any) => {
+		console.log("TCL: req", req.body)
         res.status(200).send(`TIME POST`);
     });
 

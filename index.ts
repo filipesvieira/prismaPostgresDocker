@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use( express.static( __dirname + '/public' ) );
 swagger(app);
 server.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
 // Carrega API routes
 require("./app/controllers")(app);

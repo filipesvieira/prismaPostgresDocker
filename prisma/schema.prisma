@@ -36,3 +36,9 @@ model Time {
     data_inauguracao DateTime?
     estado String?
 }
+
+model Pato {
+    id    Int     @id @default(autoincrement())
+    nome  String?
+    peso String?
+}

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>API Documentation</title>
+    <title>DuckApi Documentation</title>
     <link rel="stylesheet" type="text/css" href="./swagger-ui.css" />
     <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
@@ -40,7 +40,8 @@
                 validatorUrl: null,
                 urls:
                     [
-                        { url: "api", name: "API" },
+                        { url: "api", name: "DUCK API" },
+                        { url: "api2", name: "DUCK API 2" },
                     ],
                 dom_id: '#swagger-ui',
                 deepLinking: true,
@@ -53,17 +54,8 @@
                 ],
                 layout: "StandaloneLayout",
             })
-            ui.initOAuth({
-                clientId: "",
-                clientSecret: "",
-                realm: "your-realms",
-                appName: "API",
-                scopeSeparator: " ",
-                additionalQueryStringParams: {field: "value"},
-                usePkceWithAuthorizationCodeGrant: false
-            })
             window.ui = ui
-        }  
+        }
     </script>
 </body>
 
