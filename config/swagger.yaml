@@ -1,7 +1,18 @@
 API:
   openapi: 3.0.3
   info:
-    title: API
+    title: DUCK API
+    description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+    version: 1.0.0
+  servers:
+    - url: http://localhost:3000
+      description: Optional server description, e.g. Main (production) server
+    - url: http://localhost:3000/
+      description: Optional server description, e.g. Internal staging server for testing
+API2:
+  openapi: 3.0.3
+  info:
+    title: DUCK API
     description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
     version: 1.0.0
   servers:
