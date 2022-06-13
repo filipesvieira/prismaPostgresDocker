@@ -97,7 +97,7 @@ module.exports = (app: App) => {
     app.get('/user', async (req: any, res: any) => {
         if (req.method === 'GET') {
             try {
-                let users = await JogadorController.get(req);
+                let users = await UserController.get(req);
                 res.status(200).json(JSON.parse(JSON.stringify(users)));
             } catch (error) {
                 res.status(404).json(JSON.parse(JSON.stringify(error)));
