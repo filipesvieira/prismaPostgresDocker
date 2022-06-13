@@ -1,4 +1,4 @@
-const JogadorController = require('./lib');
+const UserController = require('./lib');
 
 /**
 * @swagger
@@ -6,21 +6,15 @@ const JogadorController = require('./lib');
 *
 *   schemas:
 *
-*     jogadorData:
+*     userData:
 *         type: array
 *         items:
 *           type: object
 *           properties:
-*             nome:
+*             name:
 *               type: string
 *               required: true
-*             posicao:
-*               type: string
-*               required: true
-*             altura:
-*               type: string
-*               required: true
-*             peso:
+*             email:
 *               type: string
 *               required: true
 */
@@ -30,35 +24,33 @@ interface App {
     get: any;
 }
 
-interface Jogador {
-    nome?: string,
-    posicao?: string,
-    altura?: string,
-    peso?: string,
+interface User {
+    name?: string,
+    email?: string,
 };
 
-let jogadores: Array<Jogador> = [];
+let users: Array<User> = [];
 
 module.exports = (app: App) => {
     /**
     * @swagger
-    * /jogador:
+    * /user:
     *   post:
-    *     summary: Inserta novos jogadores
-    *     description: Endpoint que recebe array de objetos com os dados de jogadores que serão inseridos na base de dados
+    *     summary: Inserta novos users
+    *     description: Endpoint que recebe array de objetos com os dados de users que serão inseridos na base de dados
     *     tags:
-    *       - JOGADOR
+    *       - USER
     *     security:
     *       - bearerAuth: []
     *     produces:
     *       - application/json
     *     requestBody:
-    *         description: 'Array de objetos para insertar novos jogadores'
+    *         description: 'Array de objetos para insertar novos users'
     *         required: true
     *         content:
     *           application/json:
     *             schema:
-    *               $ref: '#/components/schemas/jogadorData'
+    *               $ref: '#/components/schemas/userData'
     *     responses:
     *       200:
     *         description: 'success'
@@ -67,11 +59,11 @@ module.exports = (app: App) => {
     *       404:
     *         description: 'not found'
     */
-    app.post('/jogador', async (req: any, res: any) => {
+    app.post('/user', async (req: any, res: any) => {
         if (req.method === 'POST') {
             try {
-                let jogadores = await JogadorController.insert(req);
-                res.status(200).json(JSON.parse(JSON.stringify(jogadores)));
+                let users = await UserController.insert(req);
+                res.status(200).json(JSON.parse(JSON.stringify(users)));
             } catch (error) {
                 res.status(404).json(JSON.parse(JSON.stringify(error)));
                 res.end();
@@ -84,27 +76,16 @@ module.exports = (app: App) => {
 
     /**
     * @swagger
-    * /jogador:
+    * /user:
     *   get:
-    *     summary: Busca dados dos jogadores
-    *     description: Busca dados dos jogadores já cadastrados na base de dados de acordo com os parâmetros enviados
+    *     summary: Busca dados dos users
+    *     description: Busca dados dos users já cadastrados na base de dados de acordo com os parâmetros enviados
     *     tags:
-    *       - JOGADOR
+    *       - USER
     *     security:
     *       - bearerAuth: []
     *     produces:
     *       - application/json
-    *     parameters:
-    *       - name: nome
-    *         in: query
-    *         description: 'Nome do jogador'
-    *         required: false
-    *         type: string
-    *       - name: posicao
-    *         in: query
-    *         description: 'Posição do jogador'
-    *         required: false
-    *         type: string
     *     responses:
     *       200:
     *         description: 'success'
@@ -113,11 +94,11 @@ module.exports = (app: App) => {
     *       404:
     *         description: 'not found'
     */
-    app.get('/jogador', async (req: any, res: any) => {
+    app.get('/user', async (req: any, res: any) => {
         if (req.method === 'GET') {
             try {
-                let jogadores = await JogadorController.get(req);
-                res.status(200).json(JSON.parse(JSON.stringify(jogadores)));
+                let users = await JogadorController.get(req);
+                res.status(200).json(JSON.parse(JSON.stringify(users)));
             } catch (error) {
                 res.status(404).json(JSON.parse(JSON.stringify(error)));
                 res.end();

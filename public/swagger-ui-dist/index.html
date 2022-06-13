@@ -33,16 +33,29 @@
 
     <script src="./swagger-ui-bundle.js" charset="UTF-8"> </script>
     <script src="./swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
-    <script>
+    <script src="./jquery-1.9.1.js"></script>
+    <script type="module">
+        import  listArrayApis  from "/array-apis.js";
+        // import jsyaml  from './js-yaml/bin/js-yaml.js';
+        // (function () {
+        //     "use strict";
+        //     $(document).ready(function () {
+        //         console.log('CARREGOU')
+        //         $.get('./swagger.yaml')
+        //             .done(function (data) {
+        //                 console.log(data);
+        //                 // console.log(jsyaml.load(data));
+        //                 // var jsonString = JSON.stringify(data);
+        //                 // console.log(JSON.parse(jsonString));
+        //                 // console.log($.parseJSON(jsonString));
+        //             });
+        //     });
+        // }());
         window.onload = function () {
             const ui = SwaggerUIBundle({
                 readOnly : true,
                 validatorUrl: null,
-                urls:
-                    [
-                        { url: "api", name: "DUCK API" },
-                        { url: "api2", name: "DUCK API 2" },
-                    ],
+                urls: listArrayApis,
                 dom_id: '#swagger-ui',
                 deepLinking: true,
                 presets: [
