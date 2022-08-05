@@ -6,22 +6,33 @@ const server = http.createServer(app);
 const swagger = require("./lib/swagger.js");
 require('dotenv').config();
 const PORT = process.env.__YOUR_PRISMA_SERVER_PORT__ || 3000;
-// const security = [
-//     { name: 'X-Content-Type-Options', value: 'nosniff' },
-//     { name: 'X-Frame-Options', value: 'DENY' },
-//     { name: 'X-XSS-Protection', value: '1; mode=block' },
-//     { name: 'Access-Control-Allow-Origin', value: '*' },
-//     { name: 'Access-Control-Allow-Methods', value: 'GET, POST, DELETE, PUT, PATCH, OPTIONS' },
-//     { name: 'Access-Control-Allow-Headers', value: 'user, auth, token, Accept, Origin, Referer, User-Agent, Content-Type, Authorization, X-Mindflash-SessionID, X-Requested-With' },
-//     { name: 'Cache-Control', value: 'no-cache' },
-// ];
-// const http_Headers = (req: any, res: any, next: any) => {
-//     // Incluindo headers seguros
-//     for (let I = 0; I < security.length; I++) {
-//         res.setHeader(security[I].name, security[I].value);
-//     }
-//     next();
-// };
+// const mariadb = require('mariadb');
+// const pool = mariadb.createPool({
+//      host: 'portal-deploy.kangu.equipment', 
+//      user:'root', 
+//      password: 'iptw3tK0admin',
+//      database: 'kangu',
+//      port: 3307,
+//      connectionLimit: 10000
+// });
+// pool.getConnection()
+//     .then((conn: any) => {
+//     console.log("🚀 ~ file: index.ts ~ line 20 ~ .then ~ conn", conn)
+    
+//       conn.query("SELECT * FROM ad_cliente")
+//         .then((rows: any) => {
+//           console.log(rows); //[ {val: 1}, meta: ... ]
+//         })
+//         .catch((err: any) => {
+//           //handle error
+//           console.log(err); 
+//           conn.end();
+//         })
+        
+//     }).catch((err: any) => {
+//       console.log("🚀 ~ file: index.ts ~ line 32 ~ .then ~ err", err)
+//       //not connected
+//     });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use( express.static( __dirname + '/public' ) );

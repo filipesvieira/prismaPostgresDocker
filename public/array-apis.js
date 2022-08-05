@@ -1,5 +1,4 @@
 let listArrayApis = [
-    { url: "api", name: "API" },
-    { url: "api_2", name: "API 2" },
+    { url: "api_kangu", name: "API KANGU" }
 ];
 export default listArrayApis

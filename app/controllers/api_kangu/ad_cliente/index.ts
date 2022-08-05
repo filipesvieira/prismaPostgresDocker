@@ -1,4 +1,4 @@
-const JogadorController = require('./lib');
+const AdClienteModel = require('./lib');
 
 /**
 * @swagger
@@ -6,7 +6,7 @@ const JogadorController = require('./lib');
 *
 *   schemas:
 *
-*     jogadorData:
+*     adClienteData:
 *         type: array
 *         items:
 *           type: object
@@ -30,35 +30,35 @@ interface App {
     get: any;
 }
 
-interface Jogador {
+interface AdCliente {
     nome?: string,
     posicao?: string,
     altura?: string,
     peso?: string,
 };
 
-let jogadores: Array<Jogador> = [];
+let adCliente: Array<AdCliente> = [];
 
 module.exports = (app: App) => {
     /**
     * @swagger
-    * /jogador:
+    * /adCliente:
     *   post:
-    *     summary: Inserta novos jogadores
-    *     description: Endpoint que recebe array de objetos com os dados de jogadores que serão inseridos na base de dados
+    *     summary: Inserta novos clientes
+    *     description: Endpoint que recebe array de objetos com os dados de clientes que serão inseridos na base de dados
     *     tags:
-    *       - JOGADOR
+    *       - AD_CLIENTE
     *     security:
     *       - bearerAuth: []
     *     produces:
     *       - application/json
     *     requestBody:
-    *         description: 'Array de objetos para insertar novos jogadores'
+    *         description: 'Array de objetos para insertar novos clientes'
     *         required: true
     *         content:
     *           application/json:
     *             schema:
-    *               $ref: '#/components/schemas/jogadorData'
+    *               $ref: '#/components/schemas/adClienteData'
     *     responses:
     *       200:
     *         description: 'success'
@@ -67,11 +67,11 @@ module.exports = (app: App) => {
     *       404:
     *         description: 'not found'
     */
-    app.post('/jogador', async (req: any, res: any) => {
+    app.post('/adCliente', async (req: any, res: any) => {
         if (req.method === 'POST') {
             try {
-                let jogadores = await JogadorController.insert(req);
-                res.status(200).json(JSON.parse(JSON.stringify(jogadores)));
+                let adCliente = await AdClienteModel.insert(req);
+                res.status(200).json(JSON.parse(JSON.stringify(adCliente)));
             } catch (error) {
                 res.status(404).json(JSON.parse(JSON.stringify(error)));
                 res.end();
@@ -84,27 +84,16 @@ module.exports = (app: App) => {
 
     /**
     * @swagger
-    * /jogador:
+    * /adCliente:
     *   get:
-    *     summary: Busca dados dos jogadores
-    *     description: Busca dados dos jogadores já cadastrados na base de dados de acordo com os parâmetros enviados
+    *     summary: Busca dados dos clientes
+    *     description: Busca dados dos clientes já cadastrados na base de dados de acordo com os parâmetros enviados
     *     tags:
-    *       - JOGADOR
+    *       - AD_CLIENTE
     *     security:
     *       - bearerAuth: []
     *     produces:
     *       - application/json
-    *     parameters:
-    *       - name: nome
-    *         in: query
-    *         description: 'Nome do jogador'
-    *         required: false
-    *         type: string
-    *       - name: posicao
-    *         in: query
-    *         description: 'Posição do jogador'
-    *         required: false
-    *         type: string
     *     responses:
     *       200:
     *         description: 'success'
@@ -113,17 +102,16 @@ module.exports = (app: App) => {
     *       404:
     *         description: 'not found'
     */
-    app.get('/jogador', async (req: any, res: any) => {
+    app.get('/adCliente', async (req: any, res: any) => {
         if (req.method === 'GET') {
             try {
-                let jogadores = await JogadorController.get(req);
-                res.status(200).json(JSON.parse(JSON.stringify(jogadores)));
+                let adCliente = await AdClienteModel.get(req);
+                res.status(200).json(JSON.parse(JSON.stringify(adCliente)));
             } catch (error) {
                 res.status(404).json(JSON.parse(JSON.stringify(error)));
                 res.end();
             }
         } else {
-            res.status(400).json(JSON.parse(JSON.stringify('bad request, incorrect method')));
             res.end();
         }
     });

@@ -1,44 +1,49 @@
-datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
-}
-
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
-model Post {
-    id        Int     @id @default(autoincrement())
-    title     String?
-    content   String?
-    author    User?   @relation(fields: [authorId], references: [id])
-    authorId  Int?
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
-model User {
-    id    Int       @id @default(autoincrement())
-    email String?   @unique
-    name  String?
-    posts Post[]
-}
+model ad_cliente {
+  id              Int       @id @default(autoincrement())
+  nome            String    @db.VarChar(60)
+  apelido         String?   @db.VarChar(45)
+  codigo          String?   @db.VarChar(20)
+  registro        String?   @db.VarChar(45)
+  reg_est         String?   @db.VarChar(45)
+  email           String?   @db.VarChar(70)
+  telefone        String?   @db.VarChar(45)
+  celular         String?   @db.VarChar(45)
+  fax             String?   @db.VarChar(45)
+  ed_logr         String?   @db.VarChar(100)
+  ed_numero       String?   @db.VarChar(30)
+  ed_compl        String?   @db.VarChar(60)
+  ed_bairro       String?   @db.VarChar(50)
+  ed_cidade       String?   @db.VarChar(60)
+  ed_estado       String?   @db.VarChar(2)
+  contato         String    @db.VarChar(60)
+  id_cargo        Int?
+  id_banco        Int?
+  ag_banco        String?   @db.VarChar(10)
+  ag_dig_banco    String?   @db.VarChar(2)
+  conta_banco     String?   @db.VarChar(20)
+  conta_dig_banco String?   @db.VarChar(2)
+  cod_tit_banco   String?   @db.VarChar(20)
+  logo            Int?
+  id_forma_pagto  Int?
+  dt_cad          DateTime? @db.Date
+  dh_inc          DateTime? @db.DateTime(0)
+  id_usu_inc      Int?
+  id_usu_alt      Int?
+  id_plano        Int
 
-model Jogador {
-    id    Int     @id @default(autoincrement())
-    nome  String?
-    posicao String?
-    altura String?
-    peso String?
-}
-
-model Time {
-    id    Int     @id @default(autoincrement())
-    nome  String?
-    data_inauguracao DateTime?
-    estado String?
-}
-
-model Pato {
-    id    Int     @id @default(autoincrement())
-    nome  String?
-    peso String?
+  @@index([id_cargo], map: "ad_cliente_fk01_idx")
+  @@index([id_banco], map: "ad_cliente_fk02_idx")
+  @@index([id_forma_pagto], map: "ad_cliente_fk03_idx")
+  @@index([id_usu_inc], map: "ad_cliente_fk04_idx")
+  @@index([id_usu_alt], map: "ad_cliente_fk05_idx")
+  @@index([id_plano], map: "ad_cliente_fk06_idx")
 }
