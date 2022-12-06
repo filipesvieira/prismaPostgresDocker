@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/postgresql"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model tms_pedido_etiqueta {
+  id               Int       @id @default(autoincrement())
+  nome             String?   @db.VarChar(60)
+  id_pedido        Int?
+  id_integ_pedido  Int?
+  id_pessoa        Int?
+  id_pessoa_origem Int?
+  status           String?   @db.VarChar(1)
+  dh_inc           DateTime? @db.Date
+  dh_conc          DateTime? @db.Date
+  quantidade       Int?
+}
+
+model jad_log {
+  id            Int     @id @default(autoincrement())
+  identificacao String?
+  cep           String?
+  endereco      String?
+  bairro        String?
+  cidade        String?
+  estado        String?
+}

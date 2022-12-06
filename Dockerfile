@@ -1,5 +1,5 @@
 # Imagem do container
-FROM node:16.13.2
+FROM node:16.16.0
 # Enviroment variable
 ENV WORKDIR=/usr/api/prisma
 # Indica qual é o diretório de trabalho

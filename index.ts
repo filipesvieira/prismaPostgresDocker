@@ -5,7 +5,10 @@ const http = require("http");
 const server = http.createServer(app);
 const swagger = require("./lib/swagger.js");
 require('dotenv').config();
-const PORT = process.env.__YOUR_PRISMA_SERVER_PORT__ || 3000;
+const PORT = process.env.__YOUR_PRISMA_SERVER_PORT__ || 3001;
+
+// use `prisma` in your application to read and write data in your DB
+
 // const mariadb = require('mariadb');
 // const pool = mariadb.createPool({
 //      host: 'portal-deploy.kangu.equipment', 
@@ -13,7 +16,7 @@ const PORT = process.env.__YOUR_PRISMA_SERVER_PORT__ || 3000;
 //      password: 'iptw3tK0admin',
 //      database: 'kangu',
 //      port: 3307,
-//      connectionLimit: 10000
+//     //  connectionLimit: 200,
 // });
 // pool.getConnection()
 //     .then((conn: any) => {
@@ -21,7 +24,7 @@ const PORT = process.env.__YOUR_PRISMA_SERVER_PORT__ || 3000;
     
 //       conn.query("SELECT * FROM ad_cliente")
 //         .then((rows: any) => {
-//           console.log(rows); //[ {val: 1}, meta: ... ]
+//           console.log('==>>> ', JSON.parse(JSON.stringify(rows))); //[ {val: 1}, meta: ... ]
 //         })
 //         .catch((err: any) => {
 //           //handle error

@@ -1,7 +1,18 @@
-api_kangu:
+api_postgresql:
   openapi: 3.0.3
   info:
-    title: API KANGU
+    title: API POSTGRESQL
+    description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+    version: 1.0.0
+  servers:
+    - url: http://localhost:3000
+      description: Optional server description, e.g. Main (production) server
+    - url: http://localhost:3000/
+      description: Optional server description, e.g. Internal staging server for testing
+api_mariadb_kangu:
+  openapi: 3.0.3
+  info:
+    title: API MARIADB KANGU
     description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
     version: 1.0.0
   servers:

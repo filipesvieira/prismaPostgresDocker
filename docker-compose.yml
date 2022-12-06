@@ -1,21 +1,21 @@
 version: '3.8'
 networks:
-  postgres-network:
+  postgresql-network:
     driver: bridge
     driver_opts:
       com.docker.network.bridge.enable_icc: "true"
 services:
-  postgres:
+  postgresql:
     image: postgres:10.3
-    container_name: postgres-docker
+    container_name: dockerpostgresql
     restart: always
     networks:
-      - postgres-network
+      - postgresql-network
     environment:
       - POSTGRES_USER=${__YOUR_DATABASE_USER__}
       - POSTGRES_PASSWORD=${__YOUR_DATABASE_PASSWORD__}
     volumes:
-      - data-postgres:/var/lib/postgresql/data
+      - data-postgresql:/var/lib/postgresql/data
     ports:
       - '5432:5432'
     expose:
@@ -23,21 +23,21 @@ services:
   prisma:
     container_name: dockerprisma
     build: 
-      context: ./                   
+      context: ./
       dockerfile: Dockerfile
     restart: always
     ports:
       - 3000:3000
     networks:
-      - postgres-network
+      - postgresql-network
     command: >
       bash -c '
-        npx prisma generate
-        npx prisma db push
+        npx prisma db push --schema prisma/postgresql.prisma
+        npx prisma generate --schema prisma/mariadb_kangu.prisma
         npm start
       '
     depends_on:
-      - postgres
+      - postgresql
     environment:
       PRISMA_CONFIG: |
         managementApiSecret: ${__YOUR_MANAGEMENT_API_SECRET__}
@@ -52,4 +52,4 @@ services:
             connectionLimit: ${__YOUR_CONNECTION_LIMIT__}
 volumes:
   data-prisma:
-  data-postgres:
+  data-postgresql:

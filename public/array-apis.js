@@ -1,4 +1,5 @@
 let listArrayApis = [
-    { url: "api_kangu", name: "API KANGU" }
+    { url: "api_postgresql", name: "API POSTGRESQL" },
+    { url: "api_mariadb_kangu", name: "API MARIADB KANGU" }
 ];
 export default listArrayApis
