@@ -44,6 +44,7 @@ module.exports = (app: App) => {
                 let jad_log = await JadLogModel.get(req);
                 res.status(200).json(JSON.parse(JSON.stringify(jad_log)));
             } catch (error) {
+                console.log("🚀 ~ file: index.ts:47 ~ app.get ~ error", error)
                 res.status(404).json(JSON.parse(JSON.stringify(error)));
                 res.end();
             }

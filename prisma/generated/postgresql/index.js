@@ -27,11 +27,11 @@ exports.Prisma = Prisma
 
 /**
  * Prisma Client JS version: 4.2.0
- * Query Engine version: 694eea289a8462c80264df36757e4fdc129b1b32
+ * Query Engine version: da41d2bb3406da22087b849f0e911199ba4fbf11
  */
 Prisma.prismaVersion = {
   client: "4.2.0",
-  engine: "694eea289a8462c80264df36757e4fdc129b1b32"
+  engine: "da41d2bb3406da22087b849f0e911199ba4fbf11"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -78,8 +78,8 @@ const regularDirname = hasDirname && fs.existsSync(path.join(__dirname, 'schema.
 
 // if the client has been bundled, we need to look for the folders
 const foundDirname = !regularDirname && findSync(process.cwd(), [
-    "prisma/generated/postgresql",
-    "generated/postgresql",
+    "prisma\\generated\\postgresql",
+    "generated\\postgresql",
 ], ['d'], ['d'], 1)[0]
 
 const dirname = regularDirname || foundDirname || __dirname
@@ -152,7 +152,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/filipevieira/nodejs-base/nodeExpress/prisma/generated/postgresql",
+      "value": "C:\\Users\\filipe.vieira.KANGU\\Documents\\ProjetosNode\\prismaPostgresDocker\\prisma\\generated\\postgresql",
       "fromEnvVar": null
     },
     "config": {
@@ -163,12 +163,12 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": "..\\..\\..\\.env",
+    "schemaEnvPath": "..\\..\\..\\.env"
   },
-  "relativePath": "../..",
+  "relativePath": "..\\..",
   "clientVersion": "4.2.0",
-  "engineVersion": "694eea289a8462c80264df36757e4fdc129b1b32",
+  "engineVersion": "da41d2bb3406da22087b849f0e911199ba4fbf11",
   "datasourceNames": [
     "db"
   ],
@@ -192,7 +192,7 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
-path.join(__dirname, "libquery_engine-debian-openssl-1.1.x.so.node");
-path.join(process.cwd(), "prisma/generated/postgresql/libquery_engine-debian-openssl-1.1.x.so.node")
+path.join(__dirname, "query_engine-windows.dll.node");
+path.join(process.cwd(), "prisma\\generated\\postgresql\\query_engine-windows.dll.node")
 path.join(__dirname, "schema.prisma");
-path.join(process.cwd(), "prisma/generated/postgresql/schema.prisma")
+path.join(process.cwd(), "prisma\\generated\\postgresql\\schema.prisma")
