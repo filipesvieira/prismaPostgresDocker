@@ -20,6 +20,7 @@ services:
       - '5432:5432'
     expose:
       - '5432'
+    mem_limit: 512m
   prisma:
     container_name: dockerprisma
     build: 
@@ -50,6 +51,7 @@ services:
             user: ${__YOUR_DATABASE_USER__}
             password: ${__YOUR_DATABASE_PASSWORD__}
             connectionLimit: ${__YOUR_CONNECTION_LIMIT__}
+    mem_limit: 512m
 volumes:
   data-prisma:
   data-postgresql:
